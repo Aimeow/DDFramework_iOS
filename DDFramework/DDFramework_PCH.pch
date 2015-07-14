@@ -1,0 +1,96 @@
+//
+//  DDFramework_PCH.pch
+//  DDFramework
+//
+//  Created by Aimeow on 7/10/15.
+//  Copyright (c) 2015 Aimeow. All rights reserved.
+//
+
+#ifndef DDFramework_DDFramework_PCH_pch
+#define DDFramework_DDFramework_PCH_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#define  PROGRAM_VERSION [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]
+#define   OS_TYPE        @"iPhone"
+#define   PRODUCT_NAME    @"dudumeijia"
+#define kAppName @"嘟嘟美甲"
+
+#define   APIVersion        @"v2.0"
+
+#import <MJExtension.h>
+#import <ReactiveCocoa.h>
+#import <CocoaLumberjack.h>
+#import <MobClick.h>
+#import "DDCommonMethod.h"
+#import <MJExtension.h>
+#import "NSObject+allProperties.h"
+
+typedef void (^ResponseCompletionBlock)(NSInteger responseStatusCode , id responseObject);
+typedef void (^ErrorCompletionBlock)(NSURLSessionDataTask *task , NSError *error);
+typedef void (^VoidCompletionBlock)();
+
+//声明单例
+#undef	DECLARE_SINGLETON
+#define DECLARE_SINGLETON( __class ) \
+- (__class *)sharedInstance; \
++ (__class *)sharedInstance;
+
+//定义单例
+#undef	DEFINE_SINGLETON
+#define DEFINE_SINGLETON( __class ) \
+- (__class *)sharedInstance \
+{ \
+return [__class sharedInstance]; \
+} \
++ (__class *)sharedInstance \
+{ \
+static dispatch_once_t once; \
+static __class * __singleton__; \
+dispatch_once( &once, ^{ __singleton__ = [[[self class] alloc] init]; } ); \
+return __singleton__; \
+}
+
+//产品在wechat的Appkey&AppSecret
+#define kWechatAppKey @"543341bdf0de1dc4990555371cef706c"
+#define kWechatAppID @"wx62f249da34c6f157"
+
+#define kSinaAppKey @"3591736556"
+#define kSinaSecret @"1a3a5182f0490740b9882c0460d46ae7"
+
+#define UmengAppkey @"53d531ad56240bb02a0a64fd"
+#define kUmengMessageKey @"53d531ad56240bb02a0a64fd"
+#define kUmengMessageSecret @"vu3ws8gbruuykxphvs32uo2l6ppp7hti"
+
+#define kAppTitle @"嘟嘟美甲"
+#define kITunesItemIdentifier @"893607600"
+#define kITunesAppLink @"https://itunes.apple.com/us/app/du-du-mei-jia/id893607600?l=zh&ls=1&mt=8"
+
+#define kScreenWidth [UIScreen mainScreen].bounds.size.width
+#define kScreenHeight [UIScreen mainScreen].bounds.size.height
+
+//是否有新订单或者有新优惠券
+#define USER_NEW_COUPON @"USER_COUPON"
+#define USER_NEW_ORDER @"USER_ORDER"
+
+#define colorWithIntegerValue(r,g,b) [UIColor colorWithRed:r/255.0f green:g/255.0f blue:b/255.0f alpha:1.0]
+#define kMainColor [UIColor colorWithRed:255/255.0f green:121/255.0f blue:153/255.0f alpha:1.0]
+#define kBaseColor [UIColor colorWithRed:242/255.0f green:242/255.0f blue:242/255.0f alpha:1.0]
+#define kTextColor [UIColor colorWithRed:173/255.0f green:173/255.0f blue:173/255.0f alpha:1.0]
+#define kBorderColor [UIColor colorWithRed:226/255.0f green:226/255.0f blue:226/255.0f alpha:1.0]
+#define kBottomLineColor [UIColor colorWithRed:210/255.0f green:210/255.0f blue:210/255.0f alpha:1.0]
+#define kTextBlackColor [UIColor colorWithRed:54/255.0f green:54/255.0f blue:54/255.0f alpha:1.0]
+#define kPriceColor [UIColor colorWithRed:255/255.0f green:56/255.0f blue:116/255.0f alpha:1.0]
+#define kSepLineColor colorWithIntegerValue(196,196,196)
+#define kFocusBackColor colorWithIntegerValue(77,187,233)
+#define kDisableColor colorWithIntegerValue(215, 215, 215)
+#define kBACKGROUNDCOLOR [UIColor colorWithRed:246/255.0f green:246/255.0f blue:246/255.0f alpha:1.0]
+#define kNAVIBACKGROUNDCOLOR [UIColor whiteColor]
+#define kMessageColor [UIColor colorWithRed:255/255.0f green:67/255.0f blue:85/255.0f alpha:1.0]
+
+#define kLightFont @"STYuanti-SC-Light"
+#define kBoldFont @"STYuanti-SC-Bold"
+#define kRegularFont @"STYuanti-SC-Regular"
+
+#endif
